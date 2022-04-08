@@ -1,7 +1,8 @@
 const request=require("request");
 const cheerio=require("cheerio");
-
-function issuefun(url) {
+const project=require("./topic");
+const { jsPDF }=require("jspdf");
+function issuefun(url,projectName) {
     request(url,cb);
     function cb(err,res,body) {
         if(err)
@@ -9,18 +10,24 @@ function issuefun(url) {
         else
         html_handler(body);
     }
-}
 
-
+    
 function html_handler(html) {
     const $=cheerio.load(html);
     let issues_array=$(`a[data-hovercard-type="issue"]`);
-    for(let i=0;i<6;i++)
-    {
-        console.log($(issues_array[i]).text());
+    // console.log(projectName+"-------------->>>>");
+    const doc = new jsPDF();
+    for(let i=0;i<5;i++)
+    {   
+        let issue_disp=$(issues_array[i]).text();        
+        doc.text(issue_disp, 10, 10);
+        break;
     }
-    console.log("\n");
+    doc.save(projectName+".pdf");
+
 }
+}
+
 
 module.exports={
     issuefun:issuefun
