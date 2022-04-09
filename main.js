@@ -13,7 +13,6 @@ function cb(error,response,body) {
     else
         htmlHandle(body);    
 }
-
 //     (2). html se Top 3 Topics ke Link nikal kr next Module ko bhejo
 function htmlHandle(html) {
     const $=cheerio.load(html);
@@ -31,7 +30,7 @@ function htmlHandle(html) {
         {
             fs.mkdirSync(topic_folder_path);
         }
-        topic.topicfun(ithtopic_fullLink,topic_folder_path);
-        // break;
+        topic.topicfun(ithtopic_fullLink,topic_folder_path,topic_folder_path);
     }
 }
+

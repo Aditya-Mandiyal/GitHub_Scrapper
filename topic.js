@@ -6,7 +6,7 @@ const fs = require("fs");
 
 //     (1). URL jo main.js se recieve hoga uski html mngvao request se
 let topic_folder_path;
-function topicfun(url,path) 
+function topicfun(url,path,topic_folder_path) 
 {
        topic_folder_path =path
     request(url,cb);
@@ -16,8 +16,9 @@ function topicfun(url,path)
         else
             html_handler(body);
     } 
-}
 
+
+    
 //      (2). Abhi topics ke first 8 projects ke links ko nikalo and aage wale module ko bhej do 
 function html_handler(html) {
     let $=cheerio.load(html);
@@ -32,9 +33,12 @@ function html_handler(html) {
         // {
         //     projectName=projectName.substring(0,projectName.length-3)
         // }
-         topic_projects.topic_projectsFun(ithProject_fullLink,projectName);
-    }
+         topic_projects.topic_projectsFun(ithProject_fullLink,projectName,topic_folder_path);
+        
+        }
  }
+}
+
 
 
 module.exports={
