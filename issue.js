@@ -27,11 +27,11 @@ function html_handler(html) {
         let issue_disp=$(issues_array[i]).text();        
         doc.fillColor('black').text(`(${issueCounter}). ${issue_disp}`, 23, counter);
         counter+=10;
-        doc.fontSize(8);
+        doc.fontSize(10);
         let issueHalfLink=$(issues_array[i]).attr("href");
         let issueFullLink="https://github.com"+issueHalfLink;
-        doc.fillColor('blue').text(issueFullLink, 53, counter+5);
-        counter+=25;
+        doc.fillColor('blue').text(issueFullLink, 80, counter+5);
+        counter+=50;
         issueCounter++;
     }
     doc.pipe(fs.createWriteStream(topic_folder_path+"\\"+projectName+".pdf")); 
